@@ -1,0 +1,3 @@
+<a href="<%= user_path(@conn, :show, @user) %>">
+</a>
+<h1><%= @user.name %></h1>
