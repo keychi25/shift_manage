@@ -4,20 +4,65 @@
       <p>error! Please check the errors below.</p>
     </div>
   <% end %>
- 
+   <p>チェック項目には, 行うことのできる物にチェックを入れてください</p>
+  <div class="form-group">
+  <%= label f, :ID, class: "control-label" %>
+  <%= text_input f, :user_id, placeholder: "UserId", class: "form-control" %>
+  <%= error_tag f, :user_id %>
+  </div> 
+
   <div class="form-group">
     <%= label f, :name, class: "control-label" %>
     <%= text_input f, :name, class: "form-control" %>
     <%= error_tag f, :name %>
   </div>
- 
+
   <div class="form-group">
-    <%= label f, :email, class: "control-label" %>
-    <%= text_input f, :email, class: "form-control" %>
-    <%= error_tag f, :email %>
+  <%= label f, :パートナーランク, class: "control-label" %><br>
+  <%= select f, :role, 
+  ["初心者": "初心者", " ": "無印", "☆": "星1", "☆(s)": "星1s", "☆☆": "星2", "☆☆(s)": "星2s"], 
+  class: "control-label" %>
+  <%= error_tag f, :role %>
   </div>
  
+ <div class="form-group">
+<%= checkbox f, :open_counter, class: "control-label" %>
+<%= label f, :オープンカウンター, class: "control-label" %><br>
+<%= error_tag f, :open_counter %>
+</div>
+
+<div class="form-group">
+<%= checkbox f, :open_round, class: "control-label" %>
+<%= label f, :オープンラウンド, class: "control-label" %><br>
+<%= error_tag f, :open_round %>
+</div>
+
+<div class="form-group">
+<%= checkbox f, :close_counter, class: "control-label" %>
+<%= label f, :ラストカウンター, class: "control-label" %><br>
+<%= error_tag f, :close_counter %>
+</div>
+
+<div class="form-group">
+<%= checkbox f, :close_round, class: "control-label" %>
+<%= label f, :ラストラウンド, class: "control-label" %><br>
+<%= error_tag f, :close_round %>
+</div>
+
+<div class="form-group">
+<%= checkbox f, :daily_delivered, class: "control-label" %>
+<%= label f, :日配, class: "control-label" %><br>
+<%= error_tag f, :daily_delivered %>
+</div>
+
+<div class="form-group">
+<%= checkbox f, :constant_delivered, class: "control-label" %>
+<%= label f, :定配, class: "control-label" %><br>
+<%= error_tag f, :constant_delivered %>
+</div>
+
+
   <div class="form-group">
-    <%= submit "Submit", class: "btn btn-primary" %>
+    <%= submit "完了", class: "btn btn-primary" %>
   </div>
 <% end %>

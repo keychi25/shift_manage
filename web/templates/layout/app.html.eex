@@ -19,11 +19,9 @@
         <ol class="breadcrumb text-right">
           <%= if @current_user do %>
           <li><%= @current_user.name %></li>
-          <li><%= link "Register", to: user_path(@conn, :new) %></li>
-          <li><%= link "Log out", to: session_path(@conn, :delete, @current_user), method: :delete %> </li>
+          <li><%= link "ログアウト", to: session_path(@conn, :delete, @current_user), method: :delete %> </li>
           <% else %>
-          <li><%= link "Register", to: user_path(@conn, :new) %></li>
-          <li><%= link "Log in", to: session_path(@conn, :new) %></li>
+          <li><%= link "ログイン", to: session_path(@conn, :new) %></li>
           <% end %>
         </ol>
       </div>
@@ -35,7 +33,12 @@
         <%= render @view_module, @view_template, assigns %>
       </main>
 
-    </div> <!-- /container -->
+      <div class = "footer">
+
+      </div>
+    
+    </div> 
+    
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
     <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
   </body>

@@ -5,7 +5,7 @@ defmodule ShiftManage.SessionController do
       render conn, "new.html"
     end
    
-    def create(conn, %{"session" => %{"name" => user, "password" => pass}}) do
+    def create(conn, %{"session" => %{"user_id" => user, "password" => pass}}) do
       case ShiftManage.Auth.login_by_name_and_pass(conn, user, pass, repo: Repo) do
         {:ok, conn} ->
           conn

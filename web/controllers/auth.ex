@@ -15,9 +15,9 @@ defmodule ShiftManage.Auth do
       assign(conn, :current_user, user)
     end
      
-    def login_by_name_and_pass(conn, name, given_pass, opts) do
+    def login_by_name_and_pass(conn, user_id, given_pass, opts) do
       repo = Keyword.fetch!(opts, :repo)
-      user = repo.get_by(User, name: name)
+      user = repo.get_by(User, user_id: user_id)
    
       cond do
         user && checkpw(given_pass, user.password_hash) ->

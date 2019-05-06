@@ -1,6 +1,7 @@
 defmodule ShiftManage.UserController do
     use ShiftManage.Web, :controller
     alias ShiftManage.User
+    alias ShiftManage.OpenCloses
     plug :authenticate_user when action in [:index, :show, :edit, :update, :delete] 
    
     def index(conn, _params) do
@@ -45,7 +46,7 @@ defmodule ShiftManage.UserController do
           {:ok, user} ->
             conn
             |> put_flash(:info, "更新しました")
-            |> redirect(to: user_path(conn, :show, user.id))
+            |> redirect(to: page_path(conn, :index))
           {:error, changeset} ->
             render(conn, "edit.html", user: user, changeset: changeset)
         end
@@ -59,5 +60,25 @@ defmodule ShiftManage.UserController do
         |> put_flash(:info, "削除しました")
         |> redirect(to: user_path(conn, :index))
     end
+
+    def edit_password(conn, %{"id" => id}) do
+      user = Repo.get(User, id)
+      changeset = User.changeset(user)
+      render(conn, "edit_password.html", user: user, changeset: changeset)
+    end
+
+    # def update_password(conn, %{"id" => id, "user" => user_params, "current_pass" => current_pass, "new_pass" => new_pass}) do
+    #   user = Repo.get(User, id)
+    #   changeset = User.changeset(user, user_params)
+    #   put_pass_hash(changeset)
+    #   case Repo.get_by(User, password_hash: current_pass) do
+    #     {:ok, user} ->
+    #       conn
+    #       |> put_flash(:info, "更新しました")
+    #       |> redirect(to: page_path(conn, :index))
+    #     {:error, changeset} ->
+    #       render(conn, "edit_password.html", user: user, changeset: changeset)
+    #   end
+    # end
 end
   

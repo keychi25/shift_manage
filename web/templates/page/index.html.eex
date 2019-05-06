@@ -1,36 +1,31 @@
-<div class="jumbotron">
-  <h2><%= gettext "Welcome to %{name}", name: "Phoenix!" %></h2>
-  <p class="lead">A productive web framework that<br />does not compromise speed and maintainability.</p>
-</div>
-
 <div class="row marketing">
   <div class="col-lg-6">
-    <h4>Resources</h4>
-    <ul>
-      <li>
-        <a href="http://phoenixframework.org/docs/overview">Guides</a>
-      </li>
-      <li>
-        <a href="https://hexdocs.pm/phoenix">Docs</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix">Source</a>
-      </li>
-    </ul>
+  <h2>ユーザ情報</h2>
+  <%= if @current_user do %>
+   <h3>表示名:<%= @current_user.name %></h3>
+   <h3>従業員ID:<%= @current_user.user_id %></h3>
+   <h3>パートナーランク:
+    <%= case {@current_user.role} do %>
+    <% {"初心者"} -> %> 初心者
+    <% {"無印"} -> %>  無印
+    <% {"星1"} -> %> ☆ 
+    <% {"星1s"} -> %> ☆S  
+    <% {"星2"} ->  %> ☆☆  
+    <% {"星2s"} -> %> ☆☆S 
+    <% _ -> %> 未選択 <%end%> 
+   </h3>
+   <%= link "編集", to: user_path(@conn, :edit, @current_user), class: "btn btn-primary btn-xs"%><br>
+   <%= link "ログアウト", to: session_path(@conn, :delete, @current_user), method: :delete, class: "btn btn-danger btn-xs" %>
+  <% else %>
+   下記からログインしてくだい
+   <div>
+   <li><%= link "ログイン", to: session_path(@conn, :new) %></li>
+   <li><%= link "新規登録はこちらから", to: user_path(@conn, :new) %></li>
+   </div>
+  <% end %>
   </div>
 
   <div class="col-lg-6">
-    <h4>Help</h4>
-    <ul>
-      <li>
-        <a href="http://groups.google.com/group/phoenix-talk">Mailing list</a>
-      </li>
-      <li>
-        <a href="http://webchat.freenode.net/?channels=elixir-lang">#elixir-lang on freenode IRC</a>
-      </li>
-      <li>
-        <a href="https://twitter.com/elixirphoenix">@elixirphoenix</a>
-      </li>
-    </ul>
+  <h2>シフト</h2>
   </div>
 </div>
