@@ -8,14 +8,24 @@
     <meta name="author" content="">
 
     <title><%= title %></title>
+
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/custom.css") %>">
   </head>
+<% alias ShiftManage.Time 
+utc_now = Time.get_date()
+week = Time.get_week(utc_now)
+%>
 
   <body>
     <div class="container">
+   
       <div class="header">
         <h3><%= link "Shift_Manage", to: page_path(@conn, :index) %></h3>
+        <ol class="text-right">
+        <%= utc_now %>
+        <%= week %>曜日
+        </ol>
         <ol class="breadcrumb text-right">
           <%= if @current_user do %>
           <li><%= @current_user.name %></li>

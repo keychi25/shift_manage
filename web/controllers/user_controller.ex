@@ -1,7 +1,6 @@
 defmodule ShiftManage.UserController do
     use ShiftManage.Web, :controller
     alias ShiftManage.User
-    alias ShiftManage.OpenCloses
     plug :authenticate_user when action in [:index, :show, :edit, :update, :delete] 
    
     def index(conn, _params) do

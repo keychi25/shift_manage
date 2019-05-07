@@ -4,7 +4,7 @@ defmodule ShiftManage.Shift do
   schema "shift" do
     field :day, :date
     field :start_time, :naive_datetime
-    field :finish_times, :naive_datetime
+    field :finish_time, :naive_datetime
     field :free, :boolean
     field :week, :string
     field :user_id, :string
@@ -16,7 +16,5 @@ defmodule ShiftManage.Shift do
     def changeset(model, params \\ %{}) do
       model
       |> cast(params, @required_fields, @optional_fields)
-      |> validate_required(:name)
-      |> validate_length(:name, min: 1, max: 20)
     end
 end

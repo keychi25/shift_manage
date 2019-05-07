@@ -27,5 +27,14 @@
 
   <div class="col-lg-6">
   <h2>シフト</h2>
+  <%= if @current_user do %>
+  登録・編集は下記から
+  <div>
+  <li><%= link "登録", to: shift_path(@conn, :new_shifts, @current_user)%></li>
+  <li><%= link "確認", to: shift_path(@conn, :index)%></li>
+   <% else %>
+   ログインしてください
+   <% end %>
+  </div>
   </div>
 </div>
