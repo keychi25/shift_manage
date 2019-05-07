@@ -1,33 +1,15 @@
 <h4 class="center">シフト作成</h4>
+  <%= if @current_user do %>
+  
+
+ <li><%= @previous_month %>月<%= link "登録", to: shift_path(@conn, :new_shifts, @current_user)%></li>
+ <li><%= @month %>月<%= link "登録", to: shift_path(@conn, :new_shifts, @current_user)%></li>
+ <li><%= @month %>月<%= link "登録", to: shift_path(@conn, :new_shifts, @current_user)%></li>
+ <li><%= @month %>月<%= link "登録", to: shift_path(@conn, :new_shifts, @current_user)%></li>
+ <li><%= @next_month %>月<%= link "登録", to: shift_path(@conn, :new_shifts, @current_user)%></li>
+ <li><%= @next_month %>月<%= link "登録", to: shift_path(@conn, :new_shifts, @current_user)%></li>
+
  
-<%= form_for @changeset, user_path(@conn, :create), fn f -> %>
-<%= if @changeset.action do %>
-<div class="alert alert-danger">
-  <p>エラーです、以下のメッセージを確認してください</p>
-</div>
-<% end %>
-<div class="form-group">
-<table class="border">
-<tr>
-<td>
-<td>開始時間</td>
- <td><%= checkbox f, :start_time, class: "control-label" %></td>
- <td> <%= label f, :"オープンから or " , class: "control-label" %></td>
- <td><%= time_select f, :start_time, class: "form-control" %><td>
-  <%= error_tag f, :start_time %>
-<tr>
-</table>
-<h3>終了時間</h3>
-  <%= checkbox f, :finish_time, class: "control-label" %>
-  <%= label f, :"ラストまで or ", class: "control-label" %>
-  <%= time_select f, :finish_time, class: "form-control" %>
-  <%= error_tag f, :finish_time %>
+ <%= else %>
 
-<h3>Free</h3>
-  <%= checkbox f, :fre, class: "control-label" %>
-  <%= label f, :F, class: "control-label" %><br>
-  <%= error_tag f, :free %>
-</div> 
-
-<%= submit "シフト提出", class: "btn btn-primary" %>
-<% end %>
+ <%= end %>

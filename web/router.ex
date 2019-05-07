@@ -26,11 +26,11 @@ defmodule ShiftManage.Router do
     end
 
     get "shifts/:id/new_shifts", ShiftController, :new_shifts
-    get "shifts/:id/index_shifts", ShiftController, :index_shifts
+    get "shifts/:id/index_shifts", ShiftController, :index_shifts 
     resources "/shifts", ShiftController do
       pipe_through [:authenticate_user] 
     end
-
+    
     resources "/sessions", SessionController, only: [:new, :create, :delete]
 
   end

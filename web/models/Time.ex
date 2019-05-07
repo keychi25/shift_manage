@@ -18,7 +18,38 @@ defmodule ShiftManage.Time do
         end
     end
 
+    def get_previous_month(utc_now) do
+        try do
+            for i <- 1..31 do 
+                if( utc_now.month != Date.add(utc_now, i).month ) do
+                next_month = Date.add(utc_now, i)
+                throw utc_now.month
+                else
+                IO.puts "次の日にする"
+               end
+            end 
+        catch 
+            found -> found
+        end
+    end
+
+    def get_next_month(utc_now) do
+        try do
+            for i <- 1..31 do 
+                if(utc_now.month != Date.add(utc_now, -i).month) do
+                previous_month = Date.add(utc_now, -i)
+                throw utc_now.month
+                else
+                IO.puts "前の日にする"
+                end 
+            end
+        catch
+            found -> found
+        end
+    end
+
     def get_fifteen_days(month, berfore_or_after) do
         
     end
+
 end
