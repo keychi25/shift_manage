@@ -1,3 +1,3 @@
 defmodule ShiftManage.SessionView do
-    use ShiftManage.Web, :view
+  use ShiftManage.Web, :view
 end

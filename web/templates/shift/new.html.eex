@@ -1,15 +1,23 @@
 <h4 class="center">シフト作成</h4>
   <%= if @current_user do %>
-  
+<h4>
+ <%= @month.month - 1 %>月前半<%= link "確認", to: shift_path(@conn, :new_shifts, @current_user, number: @month.month-1)%>
+</h4>
+ <h4>
+ <%= @month.month - 1 %>月後半<%= link "確認", to: shift_path(@conn, :new_shifts, @current_user, number: @month.month-1)%>
+</h4>
+<h4>
+ <%= @month.month %>月前半<%= link "登録", to: shift_path(@conn, :new_shifts, @current_user, number: @month.month)%>
+ </h4>
+ <h4>
+ <%= @month.month %>月後半<%= link "登録", to: shift_path(@conn, :new_shifts, @current_user, number: @month.month)%>
+ </h4>
+ <h4>
+ <%= @month.month + 1 %>月前半<%= link "登録", to: shift_path(@conn, :new_shifts, @current_user, number: @month.month+1)%>
+ </h4>
+ <h4>
+ <%= @month.month + 1%>月後半<%= link "登録", to: shift_path(@conn, :new_shifts, @current_user, number: @month.month+1)%>
+</h4>
+ <% else %>
 
- <li><%= @previous_month %>月<%= link "登録", to: shift_path(@conn, :new_shifts, @current_user)%></li>
- <li><%= @month %>月<%= link "登録", to: shift_path(@conn, :new_shifts, @current_user)%></li>
- <li><%= @month %>月<%= link "登録", to: shift_path(@conn, :new_shifts, @current_user)%></li>
- <li><%= @month %>月<%= link "登録", to: shift_path(@conn, :new_shifts, @current_user)%></li>
- <li><%= @next_month %>月<%= link "登録", to: shift_path(@conn, :new_shifts, @current_user)%></li>
- <li><%= @next_month %>月<%= link "登録", to: shift_path(@conn, :new_shifts, @current_user)%></li>
-
- 
- <%= else %>
-
- <%= end %>
+ <% end %>

@@ -16,23 +16,17 @@ defmodule ShiftManage.Router do
 
   scope "/", ShiftManage do
     pipe_through :browser # Use the default browser stack
-
     get "/", PageController, :index 
-    get "users/:id/editpass", UserController, :edit_password
-    patch "users/:id/pass", UserController, :update_password
-    put "users/:id/pass", UserController, :update_password
+   
     resources "/users", UserController do
       pipe_through [:authenticate_user] 
     end
 
-    get "shifts/:id/new_shifts", ShiftController, :new_shifts
-    get "shifts/:id/index_shifts", ShiftController, :index_shifts 
-    resources "/shifts", ShiftController do
-      pipe_through [:authenticate_user] 
-    end
-    
-    resources "/sessions", SessionController, only: [:new, :create, :delete]
+    get "/shifts/:id/new_shifts", ShiftController, :new_shifts
+    get "/shifts/:id/index_shifts", ShiftController, :index_shifts 
+    get "/shifts/:id/new", ShiftController, :new 
 
+    resources "/sessions", SessionController, only: [:new, :create, :delete]
   end
 
   # Other scopes may use custom stacks.

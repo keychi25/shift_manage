@@ -23,7 +23,7 @@
   <%= checkbox f, :fre, class: "control-label" %>
   <%= label f, :F, class: "control-label" %><br>
   <%= error_tag f, :free %>
-</div> 
+</div>
 
 <%= submit "シフト提出", class: "btn btn-primary" %>
 <% end %>

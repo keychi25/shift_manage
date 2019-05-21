@@ -29,12 +29,12 @@
   <h2>シフト</h2>
   <%= if @current_user do %>
   登録・編集は下記から
-  <div>
-  <li><%= link "登録", to: shift_path(@conn, :new)%></li>
-  <li><%= link "確認", to: shift_path(@conn, :index)%></li>
-   <% else %>
+   <div>
+    <li><%= link "登録", to: shift_path(@conn, :new, @current_user) %></li>
+    <li><%= link "確認", to: shift_path(@conn, :index_shifts, @current_user)%></li>
+  <% else %>
    ログインしてください
-   <% end %>
-  </div>
+  <% end %>
+   </div>
   </div>
 </div>
