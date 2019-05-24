@@ -3,7 +3,6 @@ defmodule ShiftManage.Repo.Migrations.CreateShift do
 
   def change do
     create table(:shifts) do
-      
       add :day, :date
       add :start_time, :datetime
       add :finish_time, :datetime

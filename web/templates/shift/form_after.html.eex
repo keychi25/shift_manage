@@ -1,0 +1,48 @@
+<% alias ShiftManage.Time %>
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>error! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+<table width="100%" border="1">
+	<tbody>
+  <th>日付</th>
+  <th>曜日</th>
+  <th>F</th>
+  <th>開始時間</th>
+  <th>終了時間</th>
+    <%= (for i <- 15..30 do %>
+		<tr>
+			<td>
+      <%= Date.add(@now, i) %>
+       <%= text_input f, :day, value: @now, hidden: true%>
+       <%= error_tag f, :day %>
+     </td>
+      <td>
+      <%= Time.get_week(Date.add(@now, i))%>曜日
+      </td>
+			<td>
+      <%= checkbox f, :free, class: "control-label" %>
+      <%= label f, :フリーが可能, class: "control-label" %>
+      <%= error_tag f, :free%>
+      </td>
+			<td>
+      <%= time_select f, :start_time, class: "form-control" %>
+       <%= error_tag f, :start_time %>
+      </td>
+			<td>
+      <%= time_select f, :finish_time, class: "form-control" %>
+       <%= error_tag f, :finish_time %>
+     </td> 
+		</tr>
+        <% end) %>
+	</tbody>
+</table>
+
+<div class="form-group">
+  <%= submit "完了", class: "btn btn-primary" %>
+</div>
+
+<% end %>

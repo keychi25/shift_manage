@@ -22,7 +22,7 @@ defmodule ShiftManage.UserController do
             |> redirect(to: user_path(conn, :index))
      
           {:error, changeset} ->
-            render(conn, "newshtml", changeset: changeset)
+            render(conn, "new.html", changeset: changeset)
         end
     end
 

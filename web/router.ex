@@ -19,18 +19,18 @@ defmodule ShiftManage.Router do
     get "/", PageController, :index 
    
     resources "/users", UserController do
-      pipe_through [:authenticate_user] 
+      pipe_through [:authenticate_user]
     end
 
     get "/shifts/:id/new_shifts", ShiftController, :new_shifts
     get "/shifts/:id/index_shifts", ShiftController, :index_shifts 
-    get "/shifts/:id/new", ShiftController, :new 
+    post "/shifts/create", ShiftController, :create
+    get "/shifts/:id/new", ShiftController, :new
+
+    get "/shifts/:id/newKari", ShiftController, :new_shifts_kari
+    post "/shifts/createKari", ShiftController, :create_kari
 
     resources "/sessions", SessionController, only: [:new, :create, :delete]
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", ShiftManage do
-  #   pipe_through :api
-  # end
 end

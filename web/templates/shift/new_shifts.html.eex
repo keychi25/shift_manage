@@ -1,29 +1,16 @@
 <h4 class="center">シフト作成</h4>
- 
-<%= form_for @changeset, user_path(@conn, :create), fn f -> %>
+<%= form_for @changeset, shift_path(@conn, :create), fn f -> %>
+
 <%= if @changeset.action do %>
 <div class="alert alert-danger">
   <p>エラーです、以下のメッセージを確認してください</p>
 </div>
 <% end %>
-<div class="form-group">
-<h3>開始時間</h3>
- <%= checkbox f, :start_time, class: "control-label" %>
-  <%= label f, :"オープンから or " , class: "control-label" %>
- <%= time_select f, :start_time, class: "form-control" %>
-  <%= error_tag f, :start_time %>
+<%= if @before_or_after == "before" do %>
+<%= render "form_before.html", user: @current_user, changeset: @changeset, now: @now, before: @before_or_after, action: shift_path(@conn, :create)%>
 
-<h3>終了時間</h3>
-  <%= checkbox f, :finish_time, class: "control-label" %>
-  <%= label f, :"ラストまで or ", class: "control-label" %>
-  <%= time_select f, :finish_time, class: "form-control" %>
-  <%= error_tag f, :finish_time %>
+<% else %>
+<%= render "form_after.html", user: @current_user, changeset: @changeset, now: @now, after: @before_or_after, action: shift_path(@conn, :create)%>
+<% end %>
 
-<h3>Free</h3>
-  <%= checkbox f, :fre, class: "control-label" %>
-  <%= label f, :F, class: "control-label" %><br>
-  <%= error_tag f, :free %>
-</div>
-
-<%= submit "シフト提出", class: "btn btn-primary" %>
 <% end %>

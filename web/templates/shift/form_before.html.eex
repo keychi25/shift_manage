@@ -1,0 +1,70 @@
+<% alias ShiftManage.Time %>
+
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>error! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <p>シフトイン可能な日にチェックを入れ時間の指定をしてください</p>
+<table width="100%" border="1">
+	<tbody>
+    <th class="center">選択</th> 
+    <th class="center">日付</th>
+    <th class="center">曜日</th>
+    <th class="center">F(フリーが可能)</th>
+    <th class="center">開始時間</th>
+    <th class="center">終了時間</th>
+  <%= (for i <- 0..14 do %>
+  <%= form_for @changeset, @action, fn f  -> %>
+		<tr>
+    <td class="center">
+       <%= checkbox f, :check, class: "control-label"%>
+       <%= error_tag f, :check %>
+    </td>
+			<td class="center">
+       <%= Date.add(@now, i) %>
+       <%= text_input f, :day, value: @now, hidden: true%>
+       <%= error_tag f, :day %>
+      </td>
+      <td class="center">
+       <%= Time.get_week(Date.add(@now, i))%>曜日
+      </td>
+			<td class="center">
+       <%= checkbox f, :free, class: "control-label" %>
+       <%= error_tag f, :free %>
+      </td>
+			<td class="center">
+       <%= time_select f, :start_time, class: "form-control" %>
+       <%= error_tag f, :start_time %>
+      </td>
+			<td class="center">
+       <%= time_select f, :finish_time, class: "form-control" %>
+       <%= error_tag f, :finish_time %>
+     </td>
+		</tr> 
+    <%= text_input f, :user_id, value: @user.id, hidden: true%>
+    <%= error_tag f, :user_id %>
+
+     <%= text_input f, :week, value: Time.get_week(Date.add(@now, i)), hidden: true%>
+    <%= error_tag f, :week %>
+    <% end %>
+  <% end) %>
+	</tbody>
+</table>
+
+<div class="form-group" :disabled="!a">
+  <%= submit "送信", class: "btn btn-primary" %>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js">
+</script> 
+
+<script>
+  new Vue({
+    el: "#table",
+    data: {
+      a: false
+      }
+  })
+</script>

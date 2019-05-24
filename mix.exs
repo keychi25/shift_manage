@@ -20,7 +20,7 @@ defmodule ShiftManage.Mixfile do
   def application do
     [mod: {ShiftManage, []},
       applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
-        :phoenix_ecto, :comeonin, :mariaex]]
+        :phoenix_ecto, :comeonin, :mariaex, :timex]]
   end
 
   # Specifies which paths to compile per environment.
@@ -41,7 +41,8 @@ defmodule ShiftManage.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
       {:plug_cowboy , "~> 1.0"},
-      {:comeonin, "~> 2.0"}
+      {:comeonin, "~> 2.0"},
+      {:timex, "~> 3.1"}
     ]
   end
 
